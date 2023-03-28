@@ -41,12 +41,17 @@ int main(){
             printf("Ange ett tal:");
             scanf(" %d", &talet);
         }
+        if(action == 2){
+            printf("TALET in BINARY\n");
+            printBits(sizeof(talet), &talet);
+        }
+
 
     }
 
-    unsigned int v = 0b10010000;
-    printf("%d\n",v);
-    printBits(sizeof(v),&v);
+    // unsigned int v = 0b10010000;
+    // printf("%d\n",v);
+    // printBits(sizeof(v),&v);
 
     //unsigned int v = 12;
     return 0;
