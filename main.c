@@ -31,13 +31,43 @@ void printBits(size_t const size, void const* const ptr)
 //    kan du gå igenom MSB & LSB eller missade jag det ?
 
 int main(){
+    // & bitwise and
+    // bitwise or
+    // bitwise not
+    // SÄTTA EN VISS BIT ("göra sp en specifik LED lyser - tex nr 3")        
+    // digitalWrite(3, HIGH);
+
+
     //int n;
     //scanf -> n
     // 65, 98
     // 010000001
     //char x = 'A'; // 65
-    unsigned int talet;
-    while(true){
+
+    unsigned char PORTD = 0; // 8 bitar
+    //Lets set bit 3 så ledLED på tredje börjar lysa
+    //PORTD |= (1 << 3) | (1 << 5);
+    // BITTARNAS NUMMER STARTAR PÅ 0
+    BIT_SET(PORTD,3);
+    BIT_SET(PORTD,5);
+
+    printBits(sizeof(PORTD),&PORTD);
+
+    // CLEARA EN BIT
+    //PORTD &= ~(1 << 5);
+    // a &= ~(1ULL<<b)
+    BIT_CLEAR(PORTD,5);
+    printBits(sizeof(PORTD),&PORTD);
+
+
+    // (!!((a) & (1ULL<<(b)))) 
+
+    if(BIT_CHECK(PORTD,5)){
+
+    }
+
+
+     while(true){
         printf("1. Mata in ett tal\n");        
         printf("2. Skriv ut bittarna\n");        
         printf("3. Set a bit\n");        
@@ -47,11 +77,11 @@ int main(){
         scanf(" %d",&action);
         if(action == 1){
             printf("Ange ett tal:");
-            scanf(" %d", &talet);
+            scanf(" %c", &PORTD);
         }
         if(action == 2){
             printf("TALET in BINARY\n");
-            printBits(sizeof(talet), &talet);
+            printBits(sizeof(PORTD), &PORTD);
         }
         if(action == 3){
             // skapa 0x00000001
@@ -68,7 +98,7 @@ int main(){
             //
             int bitNo;
             scanf(" %d",&bitNo);
-            BIT_SET(talet,bitNo);
+            BIT_SET(PORTD,bitNo);
             //((talet) |= (1ULL << (bitNo)));
             
         }
